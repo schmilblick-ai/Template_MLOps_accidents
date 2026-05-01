@@ -1,5 +1,10 @@
 [core]
     analytics = false
-    remote = remote_storage
+    remote = dagshub_remote
 ['remote "remote_storage"']
     url = ../../dvc_remote
+['remote "remote_gdrive"']
+    url = gdrive://1X-fBk8IQhXFSJHwCtGWMWvRzy6eWuhgF
+['remote "dagshub_remote"']
+    url = s3://Template_MLOps_accidents
+    endpointurl = https://dagshub.com/api/v1/repo-buckets/s3/schmilblick-ai
