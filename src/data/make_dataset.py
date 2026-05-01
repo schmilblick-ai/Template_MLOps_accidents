@@ -100,23 +100,23 @@ def create_new_columns_users(df):
     for i in df["victim_age"]:
         if (i > 120) | (i < 0):
             df["victim_age"].replace(i, np.nan)
-    df.drop(['an_nais'], inplace=True, axis=1)
+    df=df.drop(['an_nais'], axis=1)
     return df
 
 def create_new_columns_caract(df):
     # Create new columns
     df["hour"] = df["hrmn"].astype(str).apply(lambda x : x[:-3])
-    df.drop(['hrmn', 'an'], inplace=True, axis=1)
+    df=df.drop(['hrmn', 'an'], axis=1)
     return df
 
 def replace_names_users(df):
     # Replace names
-    df["grav"].replace([1, 2, 3, 4], [1, 3, 4, 2], inplace=True)
+    df["grav"]=df["grav"].replace([1, 2, 3, 4], [1, 3, 4, 2])
     return df
 
 def replace_names_caract(df):
     # Replace names
-    df.rename({"agg" : "agg_"},  inplace = True, axis = 1)
+    df=df.rename({"agg" : "agg_"}, axis = 1)
     df["dep"] = df["dep"].str.replace("2A", "201")
     df["dep"] = df["dep"].str.replace("2B", "202")
     df["com"] = df["com"].str.replace("2A", "201")
@@ -141,7 +141,7 @@ def group_modalities_caract(df):
 def group_modalities_veh(df):
     catv_value = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 50, 60, 80, 99]
     catv_value_new = [0, 1, 1, 2, 1, 1, 6, 2, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 3, 3, 4, 4, 1, 1, 1, 1, 1, 6, 6, 3, 3, 3, 3, 1, 1, 1, 1, 1, 0, 0]
-    df['catv'].replace(catv_value, catv_value_new, inplace=True)
+    df['catv']=df['catv'].replace(catv_value, catv_value_new)
     return df
 
 def merge_datasets(df_users, df_veh, df_places, df_caract):
@@ -156,14 +156,14 @@ def merge_datasets(df_users, df_veh, df_places, df_caract):
 def add_new_columns(df, nb_victim, nb_vehicules):
     # Add new columns
     df = df.merge(nb_victim, on="Num_Acc", how="inner")
-    df.rename({"count": "nb_victim"}, axis=1, inplace=True)
+    df=df.rename({"count": "nb_victim"}, axis=1)
     df = df.merge(nb_vehicules, on="Num_Acc", how="inner")
-    df.rename({"count": "nb_vehicules"}, axis=1, inplace=True)
+    df=df.rename({"count": "nb_vehicules"}, axis=1)
     return df
 
 def modif_target_variable(df):
     # Modify target variable
-    df['grav'].replace([2, 3, 4], [0, 1, 1], inplace=True)
+    df['grav']=df['grav'].replace([2, 3, 4], [0, 1, 1])
     return df
 
 def replace_values(df):
@@ -177,7 +177,7 @@ def replace_values(df):
 def drop_columns(df):
     # Drop columns
     list_to_drop = ['senc','larrout','actp', 'manv', 'choc', 'nbv', 'prof', 'plan', 'Num_Acc', 'id_vehicule', 'num_veh', 'pr', 'pr1','voie', 'trajet',"secu2", "secu3",'adr', 'v1', 'lartpc','occutc','v2','vosp','locp','etatp', 'infra', 'obs' ]
-    df.drop(list_to_drop, axis=1, inplace=True)
+    df=df.drop(list_to_drop, axis=1)
     return df
 
 def drop_lines_with_nan_values(df):
