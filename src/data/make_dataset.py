@@ -51,9 +51,11 @@ def process_data(input_filepath_users, input_filepath_caract, input_filepath_pla
     df_caract.drop(['hrmn', 'an'], inplace=True, axis=1)
     df_users.drop(['an_nais'], inplace=True, axis=1)
 
-    #--Replacing names 
+    #--Replacing names - agg et int font vraiment puka !
     df_users.grav.replace([1,2,3,4], [1,3,4,2], inplace = True)
     df_caract.rename({"agg" : "agg_"},  inplace = True, axis = 1)
+    df_caract.rename({"int" : "int_"},  inplace = True, axis = 1)
+
     corse_replace = {"2A":"201", "2B":"202"}
     df_caract["dep"] = df_caract["dep"].str.replace("2A", "201")
     df_caract["dep"] = df_caract["dep"].str.replace("2B", "202")

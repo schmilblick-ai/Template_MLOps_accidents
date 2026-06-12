@@ -1,5 +1,5 @@
 [project]
-name = "correction"
+name = "BentoML_Cours"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -9,7 +9,7 @@ dependencies = [
     "numpy==1.26.4",
     "pandas==2.3.3",
     "scikit-learn==1.3.2",
-    "pydantic==2.12.1",
+    "pydantic",
     "requests==2.32.5",
     "pyjwt==2.10.1",
     "evidently>=0.6.5",
